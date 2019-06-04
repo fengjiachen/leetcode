@@ -10,7 +10,7 @@
 # return [0, 1].
 
 class Solution:
-    def twoSum(self, nums: [int], target: int) -> [int]:
+    def twoSum(self, nums, target):
         map = {}
         for i in range(len(nums)):
             left = target - nums[i]
