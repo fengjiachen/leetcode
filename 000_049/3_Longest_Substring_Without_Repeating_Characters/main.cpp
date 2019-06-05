@@ -30,20 +30,23 @@
 
 using namespace std;
 
-int lengthOfLongestSubstring(string s) {
-    int ans = 0,n = (int)s.length();
-    int index[180]={0};
-    for(int i=0,j=0;j<n;j++){
-        i = max(index[s[j]],i);
-        ans = max(ans,j-i+1);
-        index[s[j]] = j+1;
+int lengthOfLongestSubstring(string s)
+{
+    int ans = 0, n = (int)s.length();
+    int index[180] = {0};
+    for (int i = 0, j = 0; j < n; j++)
+    {
+        i = max(index[s[j]], i);
+        ans = max(ans, j - i + 1);
+        index[s[j]] = j + 1;
     }
     return ans;
 }
 
-int main(int argc, const char * argv[]) {
+int main(int argc, const char *argv[])
+{
     // insert code here...
     string s(" ");
-    cout<<lengthOfLongestSubstring(s)<<endl;
+    cout << lengthOfLongestSubstring(s) << endl;
     return 0;
 }
