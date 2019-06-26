@@ -30,15 +30,7 @@ public:
         next = _next;
     }
 };
-Node *connect(Node *l, Node *r)
-{
-    while (l->right != NULL)
-    {
-        l = l->right;
-        r = r->left;
-    }
-    l->next = r;
-}
+
 Node *connect(Node *root)
 {
     if (root == NULL)
