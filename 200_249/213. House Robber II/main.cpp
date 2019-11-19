@@ -19,7 +19,22 @@
 #include <vector>
 
 using namespace std;
-
+int rob(vector<int> &nums, int start, int end)
+{
+    int even = 0, odd = 0;
+    for (int i = start; i < end; i++)
+    {
+        if (i % 2 == 0)
+        {
+            even = max(even + nums[i], odd);
+        }
+        else
+        {
+            odd = max(odd + nums[i], even);
+        }
+    }
+    return max(even, odd);
+}
 int rob(vector<int> &nums)
 {
     int l = nums.size();
@@ -29,49 +44,13 @@ int rob(vector<int> &nums)
     {
         return nums[0];
     }
-
-    int last = nums[1], last2 = nums[0];
-    int start = 1, start2 = 0;
-    if (last < last2)
-    {
-        last = last2;
-        start = start2;
-    }
-
-    for (int i = 2; i < nums.size() - 1; i++)
-    {
-        int t = nums[i] + last2;
-        if (t > last)
-        {
-            last2 = last;
-            last = t;
-            int temp_i = start;
-            start = start2;
-            start2 = temp_i;
-        }
-        else
-        {
-            last2 = last;
-            start2 = start;
-        }
-        // cout << "last " << last << " start " << start << endl;
-        // cout << "last2 " << last2 << " start2 " << start2 << endl;
-    }
-
-    if (start2 != 0)
-    {
-        return max(last2 + nums[l - 1], last);
-    }
-    else
-    {
-        return max(last2 + nums[l - 1] - nums[0], last);
-    }
+    return max(rob(nums, 0, l - 1), rob(nums, 1, l));
 }
 
 int main()
 {
-    int a[] = {1, 2, 3, 1, 4};
-    vector<int> n(a, a + 4);
+    int a[] = {2, 2, 4, 3, 2, 5};
+    vector<int> n(a, a + 6);
     cout << rob(n) << endl;
     return 0;
 }
